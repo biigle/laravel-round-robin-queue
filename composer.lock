@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6a18d36b8de0e7cce45a80e9a4192e68",
+    "content-hash": "0c6ee53e4088a53e1006f3abf822ea65",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -464,16 +464,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.18",
+            "version": "v5.7.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d329797ae0e2ece220d85a5b59ffe659ce2050ae"
+                "reference": "5c1d1ec7e8563ea31826fd5eb3f6791acf01160c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d329797ae0e2ece220d85a5b59ffe659ce2050ae",
-                "reference": "d329797ae0e2ece220d85a5b59ffe659ce2050ae",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/5c1d1ec7e8563ea31826fd5eb3f6791acf01160c",
+                "reference": "5c1d1ec7e8563ea31826fd5eb3f6791acf01160c",
                 "shasum": ""
             },
             "require": {
@@ -606,7 +606,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-12-17T16:47:43+00:00"
+            "time": "2018-12-18T14:00:38+00:00"
         },
         {
             "name": "laravel/nexmo-notification-channel",
@@ -3085,16 +3085,16 @@
         },
         {
             "name": "laravel/laravel",
-            "version": "v5.7.15",
+            "version": "v5.7.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/laravel.git",
-                "reference": "2a483bbf60566cab6fbd0340fb3877fc09889bc3"
+                "reference": "70532dd8ae1eb4cf27c66c92d8bc6fa4ed2c7a18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/laravel/zipball/2a483bbf60566cab6fbd0340fb3877fc09889bc3",
-                "reference": "2a483bbf60566cab6fbd0340fb3877fc09889bc3",
+                "url": "https://api.github.com/repos/laravel/laravel/zipball/70532dd8ae1eb4cf27c66c92d8bc6fa4ed2c7a18",
+                "reference": "70532dd8ae1eb4cf27c66c92d8bc6fa4ed2c7a18",
                 "shasum": ""
             },
             "require": {
@@ -3135,7 +3135,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-11-22T14:28:25+00:00"
+            "time": "2018-12-15T14:37:28+00:00"
         },
         {
             "name": "laravel/tinker",
