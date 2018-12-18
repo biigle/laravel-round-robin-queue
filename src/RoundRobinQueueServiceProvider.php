@@ -13,9 +13,9 @@ class RoundRobinQueueServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $this->app['queue']->addConnector('roundrobin', function() {
-        //     return new RoundRobinConnector;
-        // });
+        $this->app['queue']->addConnector('roundrobin', function() {
+            return new RoundRobinConnector;
+        });
     }
 
     /**
