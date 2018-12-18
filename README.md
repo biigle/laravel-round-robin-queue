@@ -2,7 +2,7 @@
 
 A round robin load balancing queue for multiple queue connections in Laravel or Lumen.
 
-Works well with multiple `biigle/laravel-remote-queue` connections.
+Works well with multiple [`biigle/laravel-remote-queue`](https://github.com/biigle/laravel-remote-queue) connections.
 
 [![Build Status](https://travis-ci.org/biigle/laravel-round-robin-queue.svg)](https://travis-ci.org/biigle/laravel-round-robin-queue)
 
