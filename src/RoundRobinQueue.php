@@ -41,6 +41,7 @@ class RoundRobinQueue extends Queue implements QueueContract
      */
     public function size($queue = null)
     {
+        $this->checkForInfiniteRecursion();
         $queue = $this->getQueue($queue);
 
         return array_reduce($this->connections, function ($carry, $item) use ($queue) {
@@ -58,6 +59,7 @@ class RoundRobinQueue extends Queue implements QueueContract
      */
     public function push($job, $data = '', $queue = null)
     {
+        $this->checkForInfiniteRecursion();
         $queue = $this->getQueue($queue);
         $connection = $this->getCurrentConnection();
         $result = $connection->push($job, $data, $queue);
@@ -76,6 +78,7 @@ class RoundRobinQueue extends Queue implements QueueContract
      */
     public function pushRaw($payload, $queue = null, array $options = [])
     {
+        $this->checkForInfiniteRecursion();
         $queue = $this->getQueue($queue);
         $connection = $this->getCurrentConnection();
         $result = $connection->pushRaw($payload, $queue, $options);
@@ -95,6 +98,7 @@ class RoundRobinQueue extends Queue implements QueueContract
      */
     public function later($delay, $job, $data = '', $queue = null)
     {
+        $this->checkForInfiniteRecursion();
         $queue = $this->getQueue($queue);
         $connection = $this->getCurrentConnection();
         $result = $connection->later($delay, $job, $data, $queue);
@@ -202,5 +206,17 @@ class RoundRobinQueue extends Queue implements QueueContract
         $this->cacheManager()->forever($this->getCacheKey(), $next);
 
         return $next;
+    }
+
+    /**
+     * Check if this queue has itself as target.
+     *
+     * @throws InfiniteRecursionException
+     */
+    protected function checkForInfiniteRecursion()
+    {
+        if (in_array($this->getConnectionName(), $this->connections)) {
+            throw new InfiniteRecursionException('A round robin queue must not have itself as target connection.');
+        }
     }
 }

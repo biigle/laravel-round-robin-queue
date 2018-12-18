@@ -5,6 +5,7 @@ namespace Biigle\RoundRobinQueue\Tests;
 use Queue;
 use Mockery;
 use Biigle\RoundRobinQueue\RoundRobinQueue;
+use Biigle\RoundRobinQueue\InfiniteRecursionException;
 
 class RoundRobinQueueTest extends TestCase
 {
@@ -26,6 +27,18 @@ class RoundRobinQueueTest extends TestCase
    {
       $queue = Queue::connection('rr');
       $this->assertInstanceOf(RoundRobinQueue::class, $queue);
+   }
+
+   public function testInfiniteRecursion()
+   {
+      config(['queue.connections.rri' => [
+         'driver' => 'roundrobin',
+         'queue' => 'default',
+         'connections' => ['rri'],
+      ]]);
+
+      $this->expectException(InfiniteRecursionException::class);
+      Queue::connection('rri')->size();
    }
 
    public function testSize()
