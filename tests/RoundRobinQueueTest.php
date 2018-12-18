@@ -3,6 +3,7 @@
 namespace Biigle\RoundRobinQueue\Tests;
 
 use Queue;
+use Cache;
 use Mockery;
 use Biigle\RoundRobinQueue\RoundRobinQueue;
 use Biigle\RoundRobinQueue\InfiniteRecursionException;
@@ -101,6 +102,18 @@ class RoundRobinQueueTest extends TestCase
       $this->assertEquals(1, $queue->pushRaw('job1'));
       $this->assertEquals(2, $queue->pushRaw('job2'));
       $this->assertEquals(3, $queue->pushRaw('job3'));
+   }
+
+   public function testPushConnectionsChanged()
+   {
+      // Simulate that the connections array has been larger before.
+      Cache::forever('round-robin-queue-rr', 2);
+      $queue = Queue::connection('rr');
+
+      $q1 = Mockery::mock();
+      $q1->shouldReceive('push')->once()->with('job1', '', 'default')->andReturn(1);
+      Queue::shouldReceive()->connection()->with('q1')->once()->andReturn($q1);
+      $this->assertEquals(1, $queue->push('job1'));
    }
 
    public function testLater()

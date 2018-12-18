@@ -168,7 +168,12 @@ class RoundRobinQueue extends Queue implements QueueContract
      */
     protected function getCurrentConnectionIndex()
     {
-        return $this->cacheManager()->get($this->getCacheKey(), 0);
+        $current = $this->cacheManager()->get($this->getCacheKey(), 0);
+
+        // The size of the connections array may have changed although the current index
+        // in the cache stayed the same. Make sure to handle a too large current index
+        // gracefully.
+        return $current % count($this->connections);
     }
 
     /**
