@@ -10,7 +10,7 @@ use Biigle\RoundRobinQueue\InfiniteRecursionException;
 
 class RoundRobinQueueTest extends TestCase
 {
-   public function setUp()
+   public function setUp(): void
    {
       parent::setUp();
       config(['queue.connections' => [
